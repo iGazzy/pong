@@ -62,13 +62,17 @@ void paddleHit(){
   // y +w/2 shows bottom hit box for ball to hit paddle
   //paddleLeftY - paddleH/2 shows bottom hitbox from centre for paddle
   if(x - w/2 < paddleLeftX + paddleW/2 && y - w/2 < paddleLeftY + paddleH/2 && y + w/2 > paddleLeftY - paddleH/2){
-    speedX = -speedX;  //invert X speed direction
-  }
+    if(speedX >0){  //prevents bug that ball hits corner and gets stuck inside paddle
+      speedX = -speedX;  //invert X speed direction
+    }//end inner if
+  }//end outer if
   
   if(x + w/2 > paddleRightX - paddleW/2 && y + w/2 > paddleRightY - paddleH/2 && y - w/2 < paddleRightY + paddleH/2){
-    speedX = -speedX;  //invert X speed direction
-  }
-}
+    if(speedX >0){  //prevents bug that ball hits corner and gets stuck inside paddle
+      speedX = -speedX;  //invert X speed direction
+    }//end inner if
+  }//end outer if
+}//end paddleHit()
 
 void paddleBoundary(){
   //LEFT
