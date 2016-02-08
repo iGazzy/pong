@@ -8,6 +8,9 @@ boolean upRight, downRight;
 int scoreLeft=0;
 int scoreRight=0;
 
+int textsize=40;
+int textY=50;
+
 void setup(){
   size(500,500);
   
@@ -194,9 +197,8 @@ void keyReleased(){
 }//end keyReleased
 
 void scores(){
-  textSize(40);
+  textSize(textsize);
   fill(255);
-  text(scoreLeft, width/2 + 50, 30); 
-  text(scoreRight,width/2 - 100, 30); 
-  
+  text(scoreLeft, width*.25 -textsize/2, textY); 
+  text(scoreRight,width*.75, textY); 
 }
