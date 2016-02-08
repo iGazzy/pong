@@ -73,6 +73,14 @@ void paddleBoundary(){
   if(paddleLeftY + paddleH/2 + 1> height){ //needs -1 or else it gets stuck
     paddleLeftY -= paddleS;
   }
+  
+  
+  if(paddleRightY - paddleH/2 - 1< 0){ // needs -1 or else it gets stuck
+    paddleRightY += paddleS;
+  }
+  if(paddleRightY + paddleH/2 + 1> height){ //needs -1 or else it gets stuck
+    paddleRightY -= paddleS;
+  }
 }//end paddleBoundary
 
 
@@ -137,20 +145,18 @@ void ballBounce(){
 
 void keyPressed(){
   //LEFT
-  if(key == 'w' || key == 'W'){  //UP KEY PRESSED
+  if(key == 'w' || key == 'W'){  //LEFT UP KEY PRESSED
     upLeft = true;
   }
-  
-  if(key == 's' || key == 'S'){  //DOWN KEY PRESSED
+  if(key == 's' || key == 'S'){  //LEFT DOWN KEY PRESSED
     downLeft = true;
   }
   
   //RIGHT
-  if(key == 'i' || key == 'I'){  //UP KEY PRESSED
+  if(key == 'i' || key == 'I'){  //RIGHT UP KEY PRESSED
     upRight = true;
   }
-  
-  if(key == 'k' || key == 'K'){  //DOWN KEY PRESSED
+  if(key == 'k' || key == 'K'){  //RIGHT DOWN KEY PRESSED
     downRight = true;
   }
 }//end keyPressed
@@ -160,7 +166,6 @@ void keyReleased(){
   if(key == 'w' || key == 'W'){  //LEFT UP KEY RELEASED
     upLeft = false;
   }
-  
   if(key == 's' || key == 'S'){  //LEFT DOWN KEY RELEASED
     downLeft = false;
   }
@@ -169,7 +174,6 @@ void keyReleased(){
   if(key == 'i' || key == 'I'){  //RIGHT UP KEY RELEASED
     upRight = false;
   }
-  
   if(key == 'k' || key == 'K'){  //RIGHT DOWN KEY RELEASED
     downRight = false;
   }
