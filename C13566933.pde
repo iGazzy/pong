@@ -77,6 +77,7 @@ void paddleBoundary(){
 
 
 void paddleMove(){ 
+  //LEFT
   if(paddleLeftY < height-(paddleH/2) && paddleLeftY > paddleH/2){
     
     if(upLeft == true){
@@ -88,6 +89,18 @@ void paddleMove(){
     }
   }//end if
   
+  
+  //RIGHT
+  if(paddleRightY < height-(paddleH/2) && paddleRightY > paddleH/2){
+    
+    if(upRight == true){
+      paddleRightY -= paddleS; //inverted + and - due to where centre in processing
+    }
+    
+    if(downRight == true){
+      paddleRightY += paddleS; //inverted + and - due to where centre in processing
+    }
+  }//end if
 }//end paddleMove
 
 
