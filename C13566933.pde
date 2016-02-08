@@ -1,5 +1,5 @@
 int x, y, w,speedX, speedY;
-int paddleX, paddleY, paddleW, paddleH, paddleS;
+int paddleLeftX, paddleLeftY, paddleW, paddleH, paddleS;
 boolean up, down;
 void setup(){
   size(500,500);
@@ -14,8 +14,8 @@ void setup(){
   
   //paddle initialisation
   rectMode(CENTER); //makes rect draw in the centre
-  paddleX = 50;
-  paddleY = height/2;
+  paddleLeftX = 50;
+  paddleLeftY = height/2;
   paddleW = 25;
   paddleH = 100;
   paddleS = 5;
@@ -43,40 +43,40 @@ void draw(){
 
 void drawPaddle(){
   fill(255,0,0);
-  rect(paddleX, paddleY, paddleW, paddleH);
+  rect(paddleLeftX, paddleLeftY, paddleW, paddleH);
 }//end drawPaddle
 
 void paddleHit(){
   // x -w/2 shows left edge of circle
-  // paddleX + paddleW/2 shows right edge of left paddle
+  // paddleLeftX + paddleW/2 shows right edge of left paddle
   // y -w/2 shows top hit box for ball to hit paddle
-  //paddleY + paddleH/2 shows bottom hit box from centre for paddle
+  //paddleLeftY + paddleH/2 shows bottom hit box from centre for paddle
   // y +w/2 shows bottom hit box for ball to hit paddle
-  //paddleY - paddleH/2 shows bottom hitbox from centre for paddle
-  if(x - w/2 < paddleX + paddleW/2 && y - w/2 < paddleY + paddleH/2 && y + w/2 > paddleY - paddleH/2){
+  //paddleLeftY - paddleH/2 shows bottom hitbox from centre for paddle
+  if(x - w/2 < paddleLeftX + paddleW/2 && y - w/2 < paddleLeftY + paddleH/2 && y + w/2 > paddleLeftY - paddleH/2){
     speedX = -speedX;  //invert X speed direction
   }
 }
 
 void paddleBoundary(){
-  if(paddleY - paddleH/2 - 1< 0){ // needs -1 or else it gets stuck
-    paddleY += paddleS;
+  if(paddleLeftY - paddleH/2 - 1< 0){ // needs -1 or else it gets stuck
+    paddleLeftY += paddleS;
   }
-  if(paddleY + paddleH/2 + 1> height){ //needs -1 or else it gets stuck
-    paddleY -= paddleS;
+  if(paddleLeftY + paddleH/2 + 1> height){ //needs -1 or else it gets stuck
+    paddleLeftY -= paddleS;
   }
 }//end paddleBoundary
 
 
 void paddleMove(){ 
-  if(paddleY < height-(paddleH/2) && paddleY > paddleH/2){
+  if(paddleLeftY < height-(paddleH/2) && paddleLeftY > paddleH/2){
     
     if(up == true){
-      paddleY -= paddleS; //inverted + and - due to where centre in processing
+      paddleLeftY -= paddleS; //inverted + and - due to where centre in processing
     }
     
     if(down == true){
-      paddleY += paddleS; //inverted + and - due to where centre in processing
+      paddleLeftY += paddleS; //inverted + and - due to where centre in processing
     }
   }//end while
   
