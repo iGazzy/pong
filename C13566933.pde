@@ -33,12 +33,39 @@ void draw(){
   ballBounce();
   
   drawPaddle();
+  
+  paddleMove();
+  
+  paddleBoundary();
 }//end draw
 
 void drawPaddle(){
   fill(255,0,0);
   rect(paddleX, paddleY, paddleW, paddleH);
 }//end drawPaddle
+
+void paddleBoundary(){
+  if(paddleY - paddleH/2 - 1< 0){ // needs -1 or else it gets stuck
+    paddleY += paddleS;
+  }
+  if(paddleY + paddleH/2 + 1> height){ //needs -1 or else it gets stuck
+    paddleY -= paddleS;
+  }
+}//end paddleBoundary
+
+void paddleMove(){ 
+  if(paddleY < height-(paddleH/2) && paddleY > paddleH/2){
+    
+    if(up == true){
+      paddleY -= paddleS; //inverted + and - due to where centre in processing
+    }
+    
+    if(down == true){
+      paddleY += paddleS; //inverted + and - due to where centre in processing
+    }
+  }//end while
+  
+}//end paddleMove
 
 
 void drawBall(){
