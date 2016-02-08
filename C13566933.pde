@@ -37,12 +37,23 @@ void draw(){
   paddleMove();
   
   paddleBoundary();
+  
+  paddleHit();
 }//end draw
+
 
 void drawPaddle(){
   fill(255,0,0);
   rect(paddleX, paddleY, paddleW, paddleH);
 }//end drawPaddle
+
+void paddleHit(){
+  // x-w/2 shows left edge of circle
+  // paddleX + paddleW/2 shows right edge of left paddle
+  if(x - w/2 < paddleX + paddleW/2){
+    speedX = -speedX;  //invert X speed direction
+  }
+}
 
 void paddleBoundary(){
   if(paddleY - paddleH/2 - 1< 0){ // needs -1 or else it gets stuck
@@ -52,6 +63,7 @@ void paddleBoundary(){
     paddleY -= paddleS;
   }
 }//end paddleBoundary
+
 
 void paddleMove(){ 
   if(paddleY < height-(paddleH/2) && paddleY > paddleH/2){
