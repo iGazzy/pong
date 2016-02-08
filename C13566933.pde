@@ -136,6 +136,7 @@ void ballBounce(){
 }//end ballBounce
 
 void keyPressed(){
+  //LEFT
   if(key == 'w' || key == 'W'){  //UP KEY PRESSED
     upLeft = true;
   }
@@ -143,14 +144,33 @@ void keyPressed(){
   if(key == 's' || key == 'S'){  //DOWN KEY PRESSED
     downLeft = true;
   }
+  
+  //RIGHT
+  if(key == 'i' || key == 'I'){  //UP KEY PRESSED
+    upRight = true;
+  }
+  
+  if(key == 'k' || key == 'K'){  //DOWN KEY PRESSED
+    downRight = true;
+  }
 }//end keyPressed
 
 void keyReleased(){
-  if(key == 'w' || key == 'W'){  //UP KEY RELEASED
+  //RIGHT
+  if(key == 'w' || key == 'W'){  //LEFT UP KEY RELEASED
     upLeft = false;
   }
   
-  if(key == 's' || key == 'S'){  //DOWN KEY RELEASED
+  if(key == 's' || key == 'S'){  //LEFT DOWN KEY RELEASED
     downLeft = false;
+  }
+  
+  //LEFT
+  if(key == 'i' || key == 'I'){  //RIGHT UP KEY RELEASED
+    upRight = false;
+  }
+  
+  if(key == 'k' || key == 'K'){  //RIGHT DOWN KEY RELEASED
+    downRight = false;
   }
 }//end keyReleased
