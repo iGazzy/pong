@@ -142,12 +142,13 @@ void ballMove(){
 
 
 void ballBounce(){
-  if(x > width - w/2){
+  if(x > width - w/2){ //ball hits left wall
+    setup();  //refresh game
     speedX = - speedX;
   }//end if
   
-  else if( x < 0 + w/2){
-    speedX = -speedX;
+  else if( x < 0 + w/2){ //ball hits right wall
+    setup();  //refresh game
   }//end else if
   
   
