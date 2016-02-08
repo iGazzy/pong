@@ -4,11 +4,12 @@ int paddleRightX, paddleRightY;
 
 boolean upLeft, downLeft;
 boolean upRight, downRight;
+boolean anyKey;
 
 int scoreLeft=0;
 int scoreRight=0;
 
-int textsize=40;
+int scoreTextSize=40;
 int textY=50;
 
 void setup(){
@@ -19,7 +20,9 @@ void setup(){
   y=height/2;
   w=50;
   speedX=2;
-  speedY=3;
+  speedY=4;
+  
+  anyKey=false;
   
   
   //paddle initialisation
@@ -49,6 +52,7 @@ void draw(){
   paddleHit();
   
   scores();
+  howToPlay();
 }//end draw
 
 
@@ -136,8 +140,10 @@ void drawBall(){
 
 
 void ballMove(){
-  x += speedX; //moves circle along X-Axis
-  y += speedY; //moves circle along Y-Axis
+  if(anyKey){  //holds ball until a key is pressed
+    x += speedX; //moves circle along X-Axis
+    y += speedY; //moves circle along Y-Axis
+  }
 }//end ballMove
 
 
@@ -165,6 +171,11 @@ void ballBounce(){
 }//end ballBounce
 
 void keyPressed(){
+  //moveBall
+  if(keyPressed == true){
+    anyKey = true;
+  }
+  
   //LEFT
   if(key == 'w' || key == 'W'){  //LEFT UP KEY PRESSED
     upLeft = true;
@@ -201,8 +212,23 @@ void keyReleased(){
 }//end keyReleased
 
 void scores(){
-  textSize(textsize);
+  textSize(scoreTextSize);
   fill(255);
-  text(scoreLeft, width*.25 -textsize/2, textY); 
+  text(scoreLeft, width*.25 -scoreTextSize/2, textY); 
   text(scoreRight,width*.75, textY); 
+}
+
+void howToPlay(){
+  textSize(25);
+  fill(255);
+  if(scoreRight == 0 && scoreLeft == 0 && anyKey ==false){
+    text("Controls:", width/2 -scoreTextSize, textY+10); 
+    text("Left paddle: w and s", width*.25, height*.25); 
+    text("Right paddle: i and k", width*.25, height*.35); 
+  }
+  if(anyKey==false){
+    text("Press any key to continue", width*.20, height*.75); 
+  }
+
+
 }
