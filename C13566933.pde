@@ -64,9 +64,14 @@ void paddleHit(){
   if(x - w/2 < paddleLeftX + paddleW/2 && y - w/2 < paddleLeftY + paddleH/2 && y + w/2 > paddleLeftY - paddleH/2){
     speedX = -speedX;  //invert X speed direction
   }
+  
+  if(x + w/2 > paddleRightX - paddleW/2 && y + w/2 > paddleRightY - paddleH/2 && y - w/2 < paddleRightY + paddleH/2){
+    speedX = -speedX;  //invert X speed direction
+  }
 }
 
 void paddleBoundary(){
+  //LEFT
   if(paddleLeftY - paddleH/2 - 1< 0){ // needs -1 or else it gets stuck
     paddleLeftY += paddleS;
   }
@@ -74,7 +79,7 @@ void paddleBoundary(){
     paddleLeftY -= paddleS;
   }
   
-  
+  //RIGHT
   if(paddleRightY - paddleH/2 - 1< 0){ // needs -1 or else it gets stuck
     paddleRightY += paddleS;
   }
