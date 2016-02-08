@@ -5,6 +5,9 @@ int paddleRightX, paddleRightY;
 boolean upLeft, downLeft;
 boolean upRight, downRight;
 
+int scoreLeft=0;
+int scoreRight=0;
+
 void setup(){
   size(500,500);
   
@@ -41,6 +44,8 @@ void draw(){
   paddleMove();
   paddleBoundary();
   paddleHit();
+  
+  scores();
 }//end draw
 
 
@@ -62,7 +67,7 @@ void paddleHit(){
   // y +w/2 shows bottom hit box for ball to hit paddle
   //paddleLeftY - paddleH/2 shows bottom hitbox from centre for paddle
   if(x - w/2 < paddleLeftX + paddleW/2 && y - w/2 < paddleLeftY + paddleH/2 && y + w/2 > paddleLeftY - paddleH/2){
-    if(speedX >0){  //prevents bug that ball hits corner and gets stuck inside paddle
+    if(speedX <0){  //prevents bug that ball hits corner and gets stuck inside paddle
       speedX = -speedX;  //invert X speed direction
     }//end inner if
   }//end outer if
@@ -187,3 +192,11 @@ void keyReleased(){
     downRight = false;
   }
 }//end keyReleased
+
+void scores(){
+  textSize(40);
+  fill(255);
+  text(scoreLeft, width/2 + 50, 30); 
+  text(scoreRight,width/2 - 100, 30); 
+  
+}
