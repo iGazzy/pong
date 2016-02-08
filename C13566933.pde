@@ -1,4 +1,4 @@
-int x, y, w, h, speedX, speedY;
+int x, y, w,speedX, speedY;
 int paddleX, paddleY, paddleW, paddleH, paddleS;
 boolean up, down;
 void setup(){
@@ -8,7 +8,6 @@ void setup(){
   x=width/2;
   y=height/2;
   w=50;
-  h=50;
   speedX=2;
   speedY=3;
   
@@ -48,9 +47,13 @@ void drawPaddle(){
 }//end drawPaddle
 
 void paddleHit(){
-  // x-w/2 shows left edge of circle
+  // x -w/2 shows left edge of circle
   // paddleX + paddleW/2 shows right edge of left paddle
-  if(x - w/2 < paddleX + paddleW/2){
+  // y -w/2 shows top hit box for ball to hit paddle
+  //paddleY + paddleH/2 shows bottom hit box from centre for paddle
+  // y +w/2 shows bottom hit box for ball to hit paddle
+  //paddleY - paddleH/2 shows bottom hitbox from centre for paddle
+  if(x - w/2 < paddleX + paddleW/2 && y - w/2 < paddleY + paddleH/2 && y + w/2 > paddleY - paddleH/2){
     speedX = -speedX;  //invert X speed direction
   }
 }
@@ -82,7 +85,7 @@ void paddleMove(){
 
 void drawBall(){
   fill(0,255,0);
-  ellipse(x,y, w, h);
+  ellipse(x,y, w, w);
 }//end drawBall
 
 
@@ -102,11 +105,11 @@ void ballBounce(){
   }//end else if
   
   
-  if(y > width - h/2){
+  if(y > width - w/2){
     speedY = - speedY;
   }//end if
   
-  else if(y < 0 + h/2){
+  else if(y < 0 + w/2){
     speedY = -speedY;
   }//end else if
 }//end ballBounce
