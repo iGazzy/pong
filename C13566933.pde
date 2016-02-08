@@ -1,6 +1,10 @@
 int x, y, w,speedX, speedY;
 int paddleLeftX, paddleLeftY, paddleW, paddleH, paddleS;
-boolean up, down;
+int paddleRightX, paddleRightY;
+
+boolean upLeft, downLeft;
+boolean upRight, downRight;
+
 void setup(){
   size(500,500);
   
@@ -16,34 +20,38 @@ void setup(){
   rectMode(CENTER); //makes rect draw in the centre
   paddleLeftX = 50;
   paddleLeftY = height/2;
+  
+  paddleRightX = width-50;
+  paddleRightY = height/2;
+  
   paddleW = 25;
   paddleH = 100;
   paddleS = 5;
   
-}//end setup
+}//end setupLeft
 
 void draw(){
   background(0);
   
   drawBall();
-  
   ballMove();
-  
   ballBounce();
   
   drawPaddle();
-  
   paddleMove();
-  
   paddleBoundary();
-  
   paddleHit();
 }//end draw
 
 
 void drawPaddle(){
+  //LEFT
   fill(255,0,0);
   rect(paddleLeftX, paddleLeftY, paddleW, paddleH);
+  
+  //RIGHT
+  fill(0,0,255);
+  rect(paddleRightX, paddleRightY, paddleW, paddleH);
 }//end drawPaddle
 
 void paddleHit(){
@@ -71,14 +79,14 @@ void paddleBoundary(){
 void paddleMove(){ 
   if(paddleLeftY < height-(paddleH/2) && paddleLeftY > paddleH/2){
     
-    if(up == true){
+    if(upLeft == true){
       paddleLeftY -= paddleS; //inverted + and - due to where centre in processing
     }
     
-    if(down == true){
+    if(downLeft == true){
       paddleLeftY += paddleS; //inverted + and - due to where centre in processing
     }
-  }//end while
+  }//end if
   
 }//end paddleMove
 
@@ -116,20 +124,20 @@ void ballBounce(){
 
 void keyPressed(){
   if(key == 'w' || key == 'W'){  //UP KEY PRESSED
-    up = true;
+    upLeft = true;
   }
   
   if(key == 's' || key == 'S'){  //DOWN KEY PRESSED
-    down = true;
+    downLeft = true;
   }
 }//end keyPressed
 
 void keyReleased(){
   if(key == 'w' || key == 'W'){  //UP KEY RELEASED
-    up = false;
+    upLeft = false;
   }
   
   if(key == 's' || key == 'S'){  //DOWN KEY RELEASED
-    down = false;
+    downLeft = false;
   }
 }//end keyReleased
